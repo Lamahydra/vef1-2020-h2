@@ -1,9 +1,9 @@
 //browser-sync start --server --files ["* .html", "* .js", "* .css"]
 let videoMinute;
-let v2;
-let v3;
-let v4;
-let v5;
+let videoHours;
+let videoDays;
+let videoWeeks;
+let videoYears;
 let v6;
 let v1h = 0;
 let v2h = 0;
@@ -11,6 +11,34 @@ let v3h = 0;
 let v4h = 0;
 let v5h = 0;
 let v6h = 0;
+
+var minutes = 635052; // 635052 = (24*60)*365 + (24*60)*30*2 + (24*60)*14 + (24*60)*2 + 12;
+getDataHR(minutes); // 1 year, 2 months, 2 week, 2 days, 12 minutes
+
+function getDataHR (newMinutes) {
+    MINS_PER_YEAR = 24 * 365 * 60;
+    MINS_PER_MONTH = 24 * 30 * 60;
+    MINS_PER_WEEK = 24 * 7 * 60;
+    MINS_PER_DAY = 24 * 60;
+    MINS_PER_HOUR= 60;
+    minutes = newMinutes;
+    years = Math.floor(minutes / MINS_PER_YEAR);
+    minutes = minutes - years * MINS_PER_YEAR;
+    months = Math.floor(minutes / MINS_PER_MONTH);
+    minutes = minutes - months * MINS_PER_MONTH;
+    weeks = Math.floor(minutes / MINS_PER_WEEK);
+    minutes = minutes - weeks * MINS_PER_WEEK;
+    days = Math.floor(minutes / MINS_PER_DAY);
+    minutes = minutes - days * MINS_PER_DAY;
+    hours = Math.floor(minutes / MINS_PER_HOUR);
+    minutes = minutes - hours * MINS_PER_DAY;
+
+    let x = new Date(years, months, days, hours, minutes, 0, 0);
+    console.log(x);
+
+    return years + " year(s) " + months + " month(s) " + weeks + " week(s) " + days + " day(s) " + hours + " hour(s)" + minutes + " minute(s)"
+    //return hrData; // 1 year, 2 months, 2 week, 2 days, 12 minutes
+}
 
 
 async function getVideo(){
@@ -30,19 +58,10 @@ async function getVideo(){
 	let v4 = data.videos[3].duration;
 	let v5 = data.videos[4].duration;
 	let v6 = data.videos[5].duration;
-	videoMinute = {v1, v2, v3, v4, v5, v6}
-	
-	console.log(videoMinute);
-	if(v3>60){
-		let z = true;
-		while(z){
-			if(v3<60)break;
-			v3 -=60;
-			v3h +=1;
-		}
-	}
-	console.log(v3);
-	console.log(v3h);
+	videoMinute = {v1, v2, v3, v4, v5, v6} 
+
+	console.log(getDataHR(v3));
+
 
 	//NYLEG MYNDBÖND
 	const nyRod = data.categories[0].videos;
