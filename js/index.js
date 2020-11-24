@@ -1,68 +1,67 @@
 //browser-sync start --server --files ["* .html", "* .js", "* .css"]
-let videoMinute;
-let videoHours;
-let videoDays;
-let videoWeeks;
-let videoYears;
-let v6;
-let v1h = 0;
-let v2h = 0;
-let v3h = 0;
-let v4h = 0;
-let v5h = 0;
-let v6h = 0;
 
-var minutes = 635052; // 635052 = (24*60)*365 + (24*60)*30*2 + (24*60)*14 + (24*60)*2 + 12;
-getDataHR(minutes); // 1 year, 2 months, 2 week, 2 days, 12 minutes
 
 function getDataHR (newMinutes) {
-    MINS_PER_YEAR = 24 * 365 * 60;
-    MINS_PER_MONTH = 24 * 30 * 60;
-    MINS_PER_WEEK = 24 * 7 * 60;
-    MINS_PER_DAY = 24 * 60;
-    MINS_PER_HOUR= 60;
-    minutes = newMinutes;
-    years = Math.floor(minutes / MINS_PER_YEAR);
+    let MINS_PER_YEAR = 24 * 365 * 60;
+    let MINS_PER_MONTH = 24 * 30 * 60;
+    let MINS_PER_WEEK = 24 * 7 * 60;
+    let MINS_PER_DAY = 24 * 60;
+    let MINS_PER_HOUR= 60;
+    let minutes = newMinutes;
+
+    let years= Math.floor(minutes / MINS_PER_YEAR);
     minutes = minutes - years * MINS_PER_YEAR;
-    months = Math.floor(minutes / MINS_PER_MONTH);
+    let months = Math.floor(minutes / MINS_PER_MONTH);
     minutes = minutes - months * MINS_PER_MONTH;
-    weeks = Math.floor(minutes / MINS_PER_WEEK);
+    let weeks = Math.floor(minutes / MINS_PER_WEEK);
     minutes = minutes - weeks * MINS_PER_WEEK;
-    days = Math.floor(minutes / MINS_PER_DAY);
+    let days = Math.floor(minutes / MINS_PER_DAY);
     minutes = minutes - days * MINS_PER_DAY;
-    hours = Math.floor(minutes / MINS_PER_HOUR);
+    let hours = Math.floor(minutes / MINS_PER_HOUR);
     minutes = minutes - hours * MINS_PER_DAY;
 
-    let x = new Date(years, months, days, hours, minutes, 0, 0);
-    console.log(x);
+    let time = {minutes, hours, days, weeks, months, years};
 
-    return years + " year(s) " + months + " month(s) " + weeks + " week(s) " + days + " day(s) " + hours + " hour(s)" + minutes + " minute(s)"
-    //return hrData; // 1 year, 2 months, 2 week, 2 days, 12 minutes
+    return time;
+}
+
+/** Add times, only deals with positive values
+** @param {string} t0 : time in h[:mm[:ss]] format
+** @param {string} t1 : time in same format as t0
+** @returns {string} summ of t0 and t1 in h:mm:ss format
+**/
+function addTimes(t0, t1) {
+  return secsToTime(timeToSecs(t0) + timeToSecs(t1));
+}
+
+// Convert time in H[:mm[:ss]] format to seconds
+function timeToSecs(time) {
+  let [h, m] = time.split(':');
+  return h*3600 + (m|0)*60;
+}
+
+// Convert seconds to time in H:mm:ss format
+function secsToTime(seconds) {
+  let z = n => (n<10? '0' : '') + n; 
+  return (seconds / 3600 | 0) + ':' +
+       z((seconds % 3600) / 60 | 0)
 }
 
 
 async function getVideo(){
 	const response = await fetch('./videos.json');
 	const data = await response.json();
-	console.log(data.categories[0]);
+
+
+	let time = "00:00:00";
+
+
+
 
 	//TITLES
 	document.getElementById('firstTitle').textContent = data.categories[0].title;
 	document.getElementById('secondTitle').textContent = data.categories[1].title;
 	document.getElementById('thirdTitle').textContent = data.categories[2].title;
-
-	//HOW LONG VIDEO IS
-	let v1 = data.videos[0].duration;
-	let v2 = data.videos[1].duration;
-	let v3 = data.videos[2].duration;
-	let v4 = data.videos[3].duration;
-	let v5 = data.videos[4].duration;
-	let v6 = data.videos[5].duration;
-	videoMinute = {v1, v2, v3, v4, v5, v6} 
-
-	console.log(getDataHR(v3));
-
-
 	//NYLEG MYNDBÖND
 	const nyRod = data.categories[0].videos;
 	const firstV = nyRod[0]-1;
@@ -74,7 +73,9 @@ async function getVideo(){
 	document.getElementById('firstrowIMG1').src = data.videos[firstV].poster;
 	document.getElementById('firstrowIMG2').src = data.videos[secondV].poster;
 	document.getElementById('firstrowIMG3').src = data.videos[thirdV].poster;
-	console.log(data.videos[firstV].poster);
+	document.getElementById('firstrowVD1').textContent = addTimes('0:' + data.videos[firstV].duration, time);
+	document.getElementById('firstrowVD2').textContent = addTimes('0:' + data.videos[secondV].duration, time);
+	document.getElementById('firstrowVD3').textContent = addTimes('0:' + data.videos[thirdV].duration, time);
 	//KENNSLUMYNDBÖND
 	const kennRod = data.categories[1].videos;
 	const firstK = kennRod[0]-1;
@@ -95,8 +96,12 @@ async function getVideo(){
 	document.getElementById('secondrowIMG4').src = data.videos[fourthK].poster;
 	document.getElementById('secondrowIMG5').src = data.videos[fifthK].poster;
 	document.getElementById('secondrowIMG6').src = data.videos[sixthK].poster;
-
-
+	document.getElementById('secondrowVD1').textContent = addTimes('0:' + data.videos[firstK].duration, time);
+	document.getElementById('secondrowVD2').textContent = addTimes('0:' + data.videos[secondK].duration, time);
+	document.getElementById('secondrowVD3').textContent = addTimes('0:' + data.videos[thirdK].duration, time);
+	document.getElementById('secondrowVD4').textContent = addTimes('0:' + data.videos[fourthK].duration, time);
+	document.getElementById('secondrowVD5').textContent = addTimes('0:' + data.videos[fifthK].duration, time);
+	document.getElementById('secondrowVD6').textContent = addTimes('0:' + data.videos[sixthK].duration, time);
 	//SKEMMTIMYNDBÖND
 	const skRod = data.categories[2].videos;
 	const firstS = skRod[0]-1;
@@ -117,17 +122,13 @@ async function getVideo(){
 	document.getElementById('thirdrowIMG4').src = data.videos[fourthS].poster;
 	document.getElementById('thirdrowIMG5').src = data.videos[fifthS].poster;
 	document.getElementById('thirdrowIMG6').src = data.videos[sixthS].poster;
-	console.log(data.videos[firstV].poster);
+	document.getElementById('thirdrowVD1').textContent = addTimes('0:' + data.videos[firstS].duration, time);
+	document.getElementById('thirdrowVD2').textContent = addTimes('0:' + data.videos[secondS].duration, time);
+	document.getElementById('thirdrowVD3').textContent = addTimes('0:' + data.videos[thirdS].duration, time);
+	document.getElementById('thirdrowVD4').textContent = addTimes('0:' + data.videos[fourthS].duration, time);
+	document.getElementById('thirdrowVD5').textContent = addTimes('0:' + data.videos[fifthS].duration, time);
+	document.getElementById('thirdrowVD6').textContent = addTimes('0:' + data.videos[sixthS].duration, time);
 
 }
+
 getVideo();
-
-/*
-fetch('./videos.json')
-	.then(function(resp){
-		return resp.json();
-
-	})
-	.then(function(data){
-		console.log(data);
-	});*/
