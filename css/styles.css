@@ -1,0 +1,37 @@
+*{
+	max-width: 1500px;
+	margin: auto;
+}
+
+.flex{
+	display:flex;
+	justify-content: space-between;
+	margin-left: 10%;
+	margin-right:10%;
+	
+}
+img {
+	width:100%;
+	max-width: 350px;
+	height:200px;
+	margin-top: 10%;
+}
+h1{
+	text-align: center;
+	
+
+}
+h2{
+	margin-left: 11.5%;
+	margin-top: 5%;
+}
+.line{
+    width: 950px;
+    height: 47px;
+    border-bottom: 1.5px solid black;
+    text-align: center;
+}
+.firstrowH3{
+
+}
+	
