@@ -8,6 +8,7 @@
 	justify-content: space-between;
 	margin-left: 10%;
 	margin-right:10%;
+	background-color: aqua;
 	
 }
 img {
@@ -15,6 +16,7 @@ img {
 	max-width: 350px;
 	height:200px;
 	margin-top: 10%;
+	margin-bottom: 5%;
 }
 h1{
 	text-align: center;
@@ -25,13 +27,13 @@ h2{
 	margin-left: 11.5%;
 	margin-top: 5%;
 }
+h3{
+	width: 350px;
+}
 .line{
     width: 950px;
     height: 47px;
     border-bottom: 1.5px solid black;
     text-align: center;
 }
-.firstrowH3{
 
-}
-	
