@@ -1,30 +1,6 @@
 //browser-sync start --server --files ["* .html", "* .js", "* .css"]
 
 
-function getDataHR (newMinutes) {
-    let MINS_PER_YEAR = 24 * 365 * 60;
-    let MINS_PER_MONTH = 24 * 30 * 60;
-    let MINS_PER_WEEK = 24 * 7 * 60;
-    let MINS_PER_DAY = 24 * 60;
-    let MINS_PER_HOUR= 60;
-    let minutes = newMinutes;
-
-    let years= Math.floor(minutes / MINS_PER_YEAR);
-    minutes = minutes - years * MINS_PER_YEAR;
-    let months = Math.floor(minutes / MINS_PER_MONTH);
-    minutes = minutes - months * MINS_PER_MONTH;
-    let weeks = Math.floor(minutes / MINS_PER_WEEK);
-    minutes = minutes - weeks * MINS_PER_WEEK;
-    let days = Math.floor(minutes / MINS_PER_DAY);
-    minutes = minutes - days * MINS_PER_DAY;
-    let hours = Math.floor(minutes / MINS_PER_HOUR);
-    minutes = minutes - hours * MINS_PER_DAY;
-
-    let time = {minutes, hours, days, weeks, months, years};
-
-    return time;
-}
-
 var utcSeconds = 1604246400;
 var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
 d.setUTCSeconds(utcSeconds);
@@ -52,12 +28,43 @@ document.write("Total number of days between dates  <br>"
 function dateConvertion(epochz){
 	let current = new Date();
 	let differenceMS = current.getTime() - epochz;
-
-	var days = differenceMS / (1000 * 3600 * 24); 
-console.log(days)
-
+	let years = Math.floor(differenceMS / (1000 * 3600 * 24 *365)); 
+	let months = Math.floor(differenceMS / (1000 * 3600 * 24 * 30)); 
+	let weeks = Math.floor(differenceMS / (1000 * 3600 * 24 * 7)); 
+	let days = Math.floor(differenceMS / (1000 * 3600 * 24)); 
+	let hours = Math.floor(differenceMS / (1000 * 3600)); 
+	if(years>0){
+		if(years==1){
+			return "Fyrir 1 ári síðan";
+		}
+		else return "Fyrir " + years + " árum síðan";
+	}
+	else if(months>0){
+		if(months==1){
+			return "Fyrir 1 mánuði síðan";
+		}
+		else return "Fyrir " + months + " mánuðum síðan";
+	}
+	else if(weeks>0){
+		if(weeks==1){
+			return "Fyrir 1 viku síðan";
+		}
+		else return "Fyrir " + weeks + " vikum síðan";
+	}
+	else if(days>0){
+		if(days==1){
+			return "Fyrir 1 degi síðan";
+		}
+		else return "Fyrir " + days + " dögum síðan";
+	}
+	else if(hours>0){
+		if(hours==1){
+			return "Fyrir 1 klukkustund síðan";
+		}
+		else return "Fyrir " + hours + " klukkustundum síðan";
+	}
+	else return "Innan við klukkustund";
 }
-dateConvertion(1604246400000)
 
 
 
@@ -92,7 +99,6 @@ async function getVideo(){
 
 	let time = "00:00:00";
 	console.log(data.videos)
-	console.log(getDataHR(data.videos[0].created))
 
 
 
@@ -103,6 +109,7 @@ async function getVideo(){
 	document.getElementById('thirdTitle').textContent = data.categories[2].title;
 	//NYLEG MYNDBÖND
 	const nyRod = data.categories[0].videos;
+	console.log('dcv ' + data.categories[0].videos)
 	const firstV = nyRod[0]-1;
 	const secondV = nyRod[1]-1;
 	const thirdV = nyRod[2]-1;
@@ -115,6 +122,9 @@ async function getVideo(){
 	document.getElementById('firstrowVD1').textContent = addTimes('0:' + data.videos[firstV].duration, time);
 	document.getElementById('firstrowVD2').textContent = addTimes('0:' + data.videos[secondV].duration, time);
 	document.getElementById('firstrowVD3').textContent = addTimes('0:' + data.videos[thirdV].duration, time);
+	document.getElementById('firstrowDC1').textContent = dateConvertion(data.videos[firstV].created);
+	document.getElementById('firstrowDC2').textContent = dateConvertion(data.videos[secondV].created);
+	document.getElementById('firstrowDC3').textContent = dateConvertion(data.videos[thirdV].created);
 	//KENNSLUMYNDBÖND
 	const kennRod = data.categories[1].videos;
 	const firstK = kennRod[0]-1;
@@ -141,6 +151,12 @@ async function getVideo(){
 	document.getElementById('secondrowVD4').textContent = addTimes('0:' + data.videos[fourthK].duration, time);
 	document.getElementById('secondrowVD5').textContent = addTimes('0:' + data.videos[fifthK].duration, time);
 	document.getElementById('secondrowVD6').textContent = addTimes('0:' + data.videos[sixthK].duration, time);
+	document.getElementById('secondrowDC1').textContent = dateConvertion(data.videos[firstK].created);
+	document.getElementById('secondrowDC2').textContent = dateConvertion(data.videos[secondK].created);
+	document.getElementById('secondrowDC3').textContent = dateConvertion(data.videos[thirdK].created);
+	document.getElementById('secondrowDC4').textContent = dateConvertion(data.videos[fourthK].created);
+	document.getElementById('secondrowDC5').textContent = dateConvertion(data.videos[fifthK].created);
+	document.getElementById('secondrowDC6').textContent = dateConvertion(data.videos[sixthK].created);
 	//SKEMMTIMYNDBÖND
 	const skRod = data.categories[2].videos;
 	const firstS = skRod[0]-1;
@@ -167,7 +183,16 @@ async function getVideo(){
 	document.getElementById('thirdrowVD4').textContent = addTimes('0:' + data.videos[fourthS].duration, time);
 	document.getElementById('thirdrowVD5').textContent = addTimes('0:' + data.videos[fifthS].duration, time);
 	document.getElementById('thirdrowVD6').textContent = addTimes('0:' + data.videos[sixthS].duration, time);
+	document.getElementById('thirdrowDC1').textContent = dateConvertion(data.videos[firstS].created);
+	document.getElementById('thirdrowDC2').textContent = dateConvertion(data.videos[secondS].created);
+	document.getElementById('thirdrowDC3').textContent = dateConvertion(data.videos[thirdS].created);
+	document.getElementById('thirdrowDC4').textContent = dateConvertion(data.videos[fourthS].created);
+	document.getElementById('thirdrowDC5').textContent = dateConvertion(data.videos[fifthS].created);
+	document.getElementById('thirdrowDC6').textContent = dateConvertion(data.videos[sixthS].created);
 
+
+console.log(data.videos[sixthS].created)
+console.log(data.videos[sixthS].created)
 }
 
 getVideo();
