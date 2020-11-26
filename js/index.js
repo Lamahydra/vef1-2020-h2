@@ -71,12 +71,7 @@ async function getVideo(){
 	const response = await fetch('./videos.json');
 	const data = await response.json();
 
-
 	let time = "00:00:00";
-	console.log(data.videos)
-
-
-
 
 	//TITLES
 	document.getElementById('firstTitle').textContent = data.categories[0].title;
@@ -165,9 +160,6 @@ async function getVideo(){
 	document.getElementById('thirdrowDC5').textContent = dateConvertion(data.videos[fifthS].created);
 	document.getElementById('thirdrowDC6').textContent = dateConvertion(data.videos[sixthS].created);
 
-
-console.log(data.videos[sixthS].created)
-console.log(data.videos[sixthS].created)
 }
 
 getVideo();
