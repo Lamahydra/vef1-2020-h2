@@ -1,6 +1,7 @@
 *{
 	max-width: 1500px;
-	margin: auto;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .flex{
@@ -8,7 +9,7 @@
 	justify-content: space-between;
 	margin-left: 10%;
 	margin-right:10%;
-	background-color: aqua;
+	background-color: rgba(185, 209, 209, 0.5);
 	
 }
 .flexItem{
@@ -19,8 +20,8 @@
 .time{
 	display: table;
 		position: relative;
-		top:-70px;
-		right:135px;
+		top:-45px;
+		left:135px;
 		padding: 3px;
 		color: white;
 		background: rgba(0, 0, 0, 0.5)no-repeat;
@@ -33,19 +34,25 @@ img {
 		max-width: 350px;
 		height:200px;
 		margin-top: 10%;
-		margin-bottom: 5%;
+
+
 }
 h1{
 	text-align: center;
+	font-family: 'Courier New', Courier, monospace;
+	margin-top: 5%;
 	
 
 }
 h2{
 	margin-left: 11.5%;
 	margin-top: 5%;
+	font-family: 'Courier New', Courier, monospace;
 }
 h3{
 	width: 350px;
+	margin-bottom: 20px;
+	font-family: Courier;
 }
 .line{
     width: 950px;
