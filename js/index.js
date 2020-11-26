@@ -1,30 +1,5 @@
 //browser-sync start --server --files ["* .html", "* .js", "* .css"]
 
-
-var utcSeconds = 1604246400;
-var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
-d.setUTCSeconds(utcSeconds);
-console.log(d);
-
-// JavaScript program to illustrate  
-    // calculation of no. of days between two date  
-  
-    // To set two dates to two variables 
-  /*  var date1 = new Date("06/30/2019"); 
-var date2 = new Date("07/30/2019"); 
-  
-// To calculate the time difference of two dates 
-var Difference_In_Time = date2.getTime() - date1.getTime(); 
-  
-// To calculate the no. of days between two dates 
-var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24); 
-  
-//To display the final no. of days (result) 
-document.write("Total number of days between dates  <br>"
-               + date1 + "<br> and <br>" 
-               + date2 + " is: <br> " 
-               + Difference_In_Days); */
-
 function dateConvertion(epochz){
 	let current = new Date();
 	let differenceMS = current.getTime() - epochz;
