@@ -7,13 +7,17 @@
   </head>
   <body>
     <div><h1 id="videoTitill"></h1></div>
-    <div></div>
+     <div id="videoContainer">
+      <video width="320" height="240" controls>
+        <source id="sourceVideo" src="" type="video/mp4">
+      </video>
+    </div>
     <div class="flex">
-      <img class="imgplayer" id="rewindBtn" src="">
-      <img class="imgplayer" id="playBtn" src="">
+      <img class="imgplayer" id="rewindBtn" src="" onclick="skip(-10)">
+      <img class="imgplayer" id="playBtn" src="" onclick="playPause()">
       <img class="imgplayer" id="soundBtn" src="">
-      <img class="imgplayer" id="fullscreenBtn" src="">
-      <img class="imgplayer" id="forwardBtn" src="">
+      <img class="imgplayer" id="fullscreenBtn" src="" onclick="makeBig()">
+      <img class="imgplayer" id="forwardBtn" src="" onclick="skip(10)">
     </div>
     <div><span id="loremIps"></span></div>
     <div><span id="relatedVideos"></span></div>
