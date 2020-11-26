@@ -63,7 +63,8 @@
 		padding-bottom: 10px;
 	}
 	.line{
-		width: 950px;
+		margin-left: 10%;
+		margin-right: 35%;
 		height: 47px;
 		border-bottom: 1.5px solid black;
 		text-align: center;
@@ -128,7 +129,8 @@ h3{
 	font-family: Courier;
 }
 .line{
-    width: 950px;
+	margin-left: 15%;
+	margin-right: 15%;
     height: 47px;
     border-bottom: 1.5px solid black;
     text-align: center;
