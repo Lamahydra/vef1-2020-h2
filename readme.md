@@ -4,7 +4,7 @@ HTML is in the root folder, css in css folder and js in js folder.
 
 
 Steinn - Std8 - Lamahydra
-Andri - - 
+Andri - aka34 - AKAndersen 
 Leó Larsen lsl6@hi.is LeoLarsen 
 
 ## Lýsing á verkefni
