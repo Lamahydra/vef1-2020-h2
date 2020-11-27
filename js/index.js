@@ -67,22 +67,76 @@ function secsToTime(seconds) {
 }
 
 
+  let relatedNum;
+  
+async function clickVideo(number){
+	  const response = await fetch('./videos.json');
+	  const data = await response.json();
+	  const relatedItemArr = ['relatedItem1','relatedItem2','relatedItem3'];
+	  for(let i=0; i<3; i++){
+		  document.getElementById(relatedItemArr[i]).innerHTML = "";
+	  }
+	  if(data.videos[number].related.length>0){
+		  relatedNum = data.videos[number].related;
+	  }
+	  console.log(relatedNum);
+	  var x11 = "/videos/small.mp4";
+	  let time = "00:00:00";
+  
+  
+	  document.getElementById('videoContainer').innerHTML = '<video width="320" height="240" controls id="videoContr"><source src="'+ data.videos[number].video +'" type="video/mp4"></video>';
+	  document.getElementById('rewindBtn').src = './img/back.svg';
+	  //TODO play needs onclick to become pause
+	  document.getElementById('playBtn').src = './img/play.svg';
+	  document.getElementById('forwardBtn').src =  './img/next.svg';
+	  document.getElementById('fullscreenBtn').src = './img/fullscreen.svg';
+	  //TODO sound needs onclick to become mute/sound
+	  document.getElementById('soundBtn').src = './img/mute.svg';
+	  document.getElementById('videoTitill').textContent = data.videos[number].title;
+	  document.getElementById('loremIps').textContent = data.videos[number].description;
+	  document.getElementById('relatedVideos').textContent = 'Tengd myndbönd';
+	  for(let i=0;i<relatedNum.length;i++){
+		  document.getElementById(relatedItemArr[i]).innerHTML = '<div><img src="'+ data.videos[relatedNum[i]-1].poster +'"> <div class="time"><span>'+ addTimes('0:' + data.videos[relatedNum[i]-1].duration, time) +'</span></div> <h3><span>'+ data.videos[relatedNum[i]-1].title +'</span></h3> <p><span>'+dateConvertion(data.videos[relatedNum[i]-1].created) + '</span></p></div>';
+  
+	  }
+  
+  } 
+
+  let firstV;
+  let secondV;
+  let thirdV;
+  let firstK;
+  let secondK;
+  let thirdK;
+  let fourthK;
+  let fifthK;
+  let sixthK;
+  let firstS;
+  let secondS;
+  let thirdS;
+  let fourthS;
+  let fifthS;
+  let sixthS;
+
+  let firstpageArr; 
+
+
 async function getVideo(){
 	const response = await fetch('./videos.json');
 	const data = await response.json();
 
 	let time = "00:00:00";
+	console.log("herroooo");
 
 	//TITLES
 	document.getElementById('firstTitle').textContent = data.categories[0].title;
 	document.getElementById('secondTitle').textContent = data.categories[1].title;
 	document.getElementById('thirdTitle').textContent = data.categories[2].title;
 	//NYLEG MYNDBÖND
-	const nyRod = data.categories[0].videos;
-	console.log('dcv ' + data.categories[0].videos)
-	const firstV = nyRod[0]-1;
-	const secondV = nyRod[1]-1;
-	const thirdV = nyRod[2]-1;
+	let nyRod = data.categories[0].videos;
+	firstV = nyRod[0]-1;
+	secondV = nyRod[1]-1;
+	thirdV = nyRod[2]-1;
 	document.getElementById('firstrowH1').textContent = data.videos[firstV].title;
 	document.getElementById('firstrowH2').textContent = data.videos[secondV].title;
 	document.getElementById('firstrowH3').textContent = data.videos[thirdV].title;
@@ -96,13 +150,13 @@ async function getVideo(){
 	document.getElementById('firstrowDC2').textContent = dateConvertion(data.videos[secondV].created);
 	document.getElementById('firstrowDC3').textContent = dateConvertion(data.videos[thirdV].created);
 	//KENNSLUMYNDBÖND
-	const kennRod = data.categories[1].videos;
-	const firstK = kennRod[0]-1;
-	const secondK = kennRod[1]-1;
-	const thirdK = kennRod[2]-1;
-	const fourthK = kennRod[3]-1;
-	const fifthK = kennRod[4]-1;
-	const sixthK = kennRod[5]-1;
+	let kennRod = data.categories[1].videos;
+	firstK = kennRod[0]-1;
+	secondK = kennRod[1]-1;
+	thirdK = kennRod[2]-1;
+	fourthK = kennRod[3]-1;
+	fifthK = kennRod[4]-1;
+	sixthK = kennRod[5]-1;
 	document.getElementById('secondrowH1').textContent = data.videos[firstK].title;
 	document.getElementById('secondrowH2').textContent = data.videos[secondK].title;
 	document.getElementById('secondrowH3').textContent = data.videos[thirdK].title;
@@ -129,12 +183,12 @@ async function getVideo(){
 	document.getElementById('secondrowDC6').textContent = dateConvertion(data.videos[sixthK].created);
 	//SKEMMTIMYNDBÖND
 	const skRod = data.categories[2].videos;
-	const firstS = skRod[0]-1;
-	const secondS = skRod[1]-1;
-	const thirdS = skRod[2]-1;
-	const fourthS = skRod[3]-1;
-	const fifthS = skRod[4]-1;
-	const sixthS = skRod[5]-1;
+	firstS = skRod[0]-1;
+	secondS = skRod[1]-1;
+	thirdS = skRod[2]-1;
+	fourthS = skRod[3]-1;
+	fifthS = skRod[4]-1;
+	sixthS = skRod[5]-1;
 	document.getElementById('thirdrowH1').textContent = data.videos[firstS].title;
 	document.getElementById('thirdrowH2').textContent = data.videos[secondS].title;
 	document.getElementById('thirdrowH3').textContent = data.videos[thirdS].title;
@@ -160,12 +214,64 @@ async function getVideo(){
 	document.getElementById('thirdrowDC5').textContent = dateConvertion(data.videos[fifthS].created);
 	document.getElementById('thirdrowDC6').textContent = dateConvertion(data.videos[sixthS].created);
 
+	firstpageArr = {
+  	firstV, secondV, thirdV, firstK, secondK, thirdK, fourthK, fifthK, sixthK, firstS, secondS, thirdS, fourthS, fifthS, sixthS
+  	};
+  console.log(firstpageArr);
+
 }
-
-function link(){
-	window.open("player.html","_self")
-
-
-}
-
 getVideo();
+
+
+function playPause() { 
+	var myVideo = document.getElementById("videoContr"); 
+	if(myVideo.paused){
+		myVideo.play();
+		document.getElementById('playBtn').src = './img/pause.svg';
+	}
+	else{
+		myVideo.pause();
+		document.getElementById('playBtn').src = './img/play.svg';
+	}
+} 
+function toggleFullScreen() {
+	var myVideo = document.getElementById("videoContr"); 
+  
+	if (!document.fullscreenElement) {
+		myVideo.requestFullscreen();
+	} 
+		else {
+			if (document.exitFullscreen) {
+				myVideo.exitFullscreen(); 
+			}
+		}
+	}
+  
+function skip(value) {
+	var video = document.getElementById("videoContr");
+	video.currentTime += value;
+}
+  
+function mutesound(){
+	var video = document.getElementById("videoContr");
+	if (video.muted == false) {    
+		video.muted = true;
+		document.getElementById('soundBtn').src = './img/unmute.svg';
+	}
+	else {
+		video.muted = false;
+		document.getElementById('soundBtn').src = './img/mute.svg';
+	}
+}
+  
+  
+function ChangeVideo(n){
+	clickVideo(relatedNum[n]-1);
+}
+
+
+
+function link(number){
+	window.location.href="./player.html";
+	clickVideo(firstpageArr[number]);
+}

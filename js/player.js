@@ -106,14 +106,6 @@ function addTimes(t0, t1) {
   
 	  }
   
-	  
-		  
-	  
-  
-  
-	  //document.getElementById('tag-id').innerHTML = '<ol><li>html data</li></ol>';
-  
-  
   }
   clickVideo(0);    
   
