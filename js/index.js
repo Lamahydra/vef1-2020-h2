@@ -220,10 +220,9 @@ async function getVideo(){
   	firstV, secondV, thirdV, firstK, secondK, thirdK, fourthK, fifthK, sixthK, firstS, secondS, thirdS, fourthS, fifthS, sixthS
   	};
   console.log(firstpageArr);
-	console.log("page: " + page);
 
 }
-if ( document.URL.includes("index.html") ) {
+if (window.location.href.includes("index") ) {
 	getVideo();
 }
 
@@ -279,11 +278,7 @@ function ChangeVideo(n){
 
 
 function link(number){
+	console.log("number is: " +number);
 	window.location.href="./player.html";
 	clickVideo(firstpageArr[number]);
-	console.log("page: " + page);
-}
-
-function back(){
-	console.log("page: " + page);
 }
