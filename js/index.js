@@ -1,5 +1,5 @@
 //browser-sync start --server --files ["* .html", "* .js", "* .css"]
-let page = 0;
+
 
 function dateConvertion(epochz){
 	let current = new Date();
@@ -83,6 +83,7 @@ async function clickVideo(number){
 	  console.log(relatedNum);
 	  var x11 = "/videos/small.mp4";
 	  let time = "00:00:00";
+	console.log("page: " + page);
   
   
 	  document.getElementById('videoContainer').innerHTML = '<video width="320" height="240" controls id="videoContr"><source src="'+ data.videos[number].video +'" type="video/mp4"></video>';
@@ -219,12 +220,16 @@ async function getVideo(){
   	firstV, secondV, thirdV, firstK, secondK, thirdK, fourthK, fifthK, sixthK, firstS, secondS, thirdS, fourthS, fifthS, sixthS
   	};
   console.log(firstpageArr);
+	console.log("page: " + page);
 
 }
-if(page==0){
+if ( document.URL.includes("index.html") ) {
 	getVideo();
 }
 
+
+
+// FOR VIDEO BUTTONS
 function playPause() { 
 	var myVideo = document.getElementById("videoContr"); 
 	if(myVideo.paused){
@@ -266,7 +271,7 @@ function mutesound(){
 	}
 }
   
-  
+//TRANSITIONS  
 function ChangeVideo(n){
 	clickVideo(relatedNum[n]-1);
 }
@@ -276,4 +281,9 @@ function ChangeVideo(n){
 function link(number){
 	window.location.href="./player.html";
 	clickVideo(firstpageArr[number]);
+	console.log("page: " + page);
+}
+
+function back(){
+	console.log("page: " + page);
 }
