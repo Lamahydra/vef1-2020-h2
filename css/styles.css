@@ -108,6 +108,10 @@ img {
 
 
 }
+img:hover{
+	opacity: 0.9;
+
+}
 
 .imgplayer{
 	height:50px;
