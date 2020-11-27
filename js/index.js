@@ -162,4 +162,10 @@ async function getVideo(){
 
 }
 
+function link(){
+	window.open("player.html");
+
+
+}
+
 getVideo();

@@ -121,14 +121,15 @@ h1{
 
 }
 h2{
-	margin-left: 11.5%;
+	display: block;
+	position: relative;
+	right: 8%;
 	margin-top: 5%;
+	font-size: 26px;
 	font-family: 'Courier New', Courier, monospace;
 }
 h3{
-	width: 350px;
-	margin-bottom: 20px;
-	font-family: Courier;
+
 }
 .line{
 	margin-left: 15%;
