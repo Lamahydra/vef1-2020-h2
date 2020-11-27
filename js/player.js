@@ -101,20 +101,6 @@ async function clickVideo(number){
 		document.getElementById(relatedItemArr[i]).innerHTML = '<div><img src="'+ data.videos[relatedNum[i]].poster +'"> <div class="time"><span>'+ addTimes('0:' + data.videos[relatedNum[i]].duration, time) +'</span></div> <h3><span>'+ data.videos[relatedNum[i]].title +'</span></h3> <p><span>'+dateConvertion(data.videos[relatedNum[i]].created) + '</span></p></div>';
 
 	}
-	/*
-	
-	if(relatedNum[0]>=0){
-			document.getElementById('relatedItem1').innerHTML = '<div><img src="'+ data.videos[relatedNum[0]].poster +'"> <div class="time"><span>'+ dateConvertion(data.videos[relatedNum[0]].created) +'</span></div> <h3><span>'+ data.videos[relatedNum[0]].title +'</span></h3> <p><span>'+ '</span></p></div>';
-
-	}
-	if(relatedNum[1]>=0){
-			document.getElementById('relatedItem2').innerHTML = '<div><img src="'+ data.videos[relatedNum[1]].poster +'"> <div class="time"><span>'+ dateConvertion(data.videos[relatedNum[1]].created) +'</span></div> <h3><span>'+ data.videos[relatedNum[1]].title +'</span></h3> <p><span>'+ '</span></p></div>';
-
-	}
-	if(relatedNum[1]>=0){
-			document.getElementById('relatedItem3').innerHTML = '<div><img src="'+ data.videos[relatedNum[2]].poster +'"> <div class="time"><span>'+ dateConvertion(data.videos[relatedNum[2]].created) +'</span></div> <h3><span>'+ data.videos[relatedNum[2]].title +'</span></h3> <p><span>'+ '</span></p></div>';
-
-	}*/
 
 	
 		
@@ -140,7 +126,7 @@ clickVideo(1);
         }
         else{
         	myVideo.pause();
-        	document.getElementById('playBtn').src = './img/play.svg';
+        		document.getElementById('playBtn').src = './img/play.svg';
 
         }
     } 
@@ -159,20 +145,31 @@ clickVideo(1);
 	}
 
      function skip(value) {
-        var video = document.getElementById("videoContr");
-        video.currentTime += value;
+            var video = document.getElementById("videoContr");
+            video.currentTime += value;
      }
+
+
 
      function mutesound(){
         var video = document.getElementById("videoContr");
-        if (video.muted = false) {    
+        if (video.muted == false) {    
+     	console.log("hi");
         	video.muted = true;
-        	document.getElementById('playBtn').src = './img/mute.svg';
+       		document.getElementById('soundBtn').src = './img/unmute.svg';
     	}
     	else {
        		video.muted = false;
-       		document.getElementById('playBtn').src = './img/play.svg';
+        	document.getElementById('soundBtn').src = './img/mute.svg';
     	}
     }
+    
+     //https://stackoverflow.com/questions/38604103/how-can-you-make-video-js-skip-forwards-and-backwards-15-seconds
 
-     
+     function restart() {
+            var video = document.getElementById("videoContr");
+			video.currentTime = 0;
+	 }
+	 function ChangeVideo(){
+		 window.open("player.html")
+	 }
