@@ -222,9 +222,7 @@ async function getVideo(){
   console.log(firstpageArr);
 
 }
-if (window.location.href.includes("index") ) {
 	getVideo();
-}
 
 
 

@@ -1,3 +1,5 @@
+
+
 /** Add times, only deals with positive values
 ** @param {string} t0 : time in h[:mm[:ss]] format
 ** @param {string} t1 : time in same format as t0
@@ -66,7 +68,6 @@ function addTimes(t0, t1) {
 	  }
 	  else return "Innan við klukkustund";
   }
-  
   
   
   
