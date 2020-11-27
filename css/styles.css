@@ -26,6 +26,12 @@
 		
 	
 	}	
+
+	.item{
+		display: flex;
+		justify-content: space-between;
+		margin: 2%;
+	}
 	
 	img {
 			width:100%;
@@ -100,6 +106,15 @@
 	
 
 }	
+.item{
+	display: flex;
+	align-self: center;
+	width:200%;
+	height: 100%;
+
+
+
+}
 
 img {
 		width:100%;
