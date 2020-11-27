@@ -130,37 +130,49 @@ clickVideo(1);
 
 
 	//controls for video.js HTML5 video player
-    var myVideo = document.getElementById("videoContr"); 
 
     function playPause() { 
-        if (myVideo.paused) 
-            myVideo.play(); 
-        else 
-            myVideo.pause(); 
+    	var myVideo = document.getElementById("videoContr"); 
+        if(myVideo.paused){
+        	myVideo.play();
+        	document.getElementById('playBtn').src = './img/pause.svg';
+
+        }
+        else{
+        	myVideo.pause();
+        	document.getElementById('playBtn').src = './img/play.svg';
+
+        }
     } 
 
-    function makeBig() { 
-        myVideo.width = 560; 
-    } 
+    function toggleFullScreen() {
+    	var myVideo = document.getElementById("videoContr"); 
 
-    function makeSmall() { 
-        myVideo.width = 320; 
-    } 
-
-    function makeNormal() { 
-        myVideo.width = 420; 
-    } 
+  		if (!document.fullscreenElement) {
+    		myVideo.requestFullscreen();
+  		} 
+  		else {
+    		if (document.exitFullscreen) {
+      			myVideo.exitFullscreen(); 
+    		}
+  		}
+	}
 
      function skip(value) {
-            var video = document.getElementById("videoContr");
-            video.currentTime += value;
-     }    
-     //https://stackoverflow.com/questions/38604103/how-can-you-make-video-js-skip-forwards-and-backwards-15-seconds
+        var video = document.getElementById("videoContr");
+        video.currentTime += value;
+     }
 
-     function restart() {
-            var video = document.getElementById("videoContr");
-			video.currentTime = 0;
-	 }
-	 function ChangeVideo(){
-		 window.open("player.html")
-	 }
+     function mutesound(){
+        var video = document.getElementById("videoContr");
+        if (video.muted = false) {    
+        	video.muted = true;
+        	document.getElementById('playBtn').src = './img/mute.svg';
+    	}
+    	else {
+       		video.muted = false;
+       		document.getElementById('playBtn').src = './img/play.svg';
+    	}
+    }
+
+     
