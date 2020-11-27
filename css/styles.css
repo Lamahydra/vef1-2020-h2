@@ -146,12 +146,13 @@ h2{
 	font-size: 26px;
 	font-family: 'Courier New', Courier, monospace;
 }
-h4{
+a{
 	display: block;
 	position: relative;
 	text-align: center;
 	font-size: 26px;
 	font-family: 'Courier New', Courier, monospace;
+	margin-top: 2%;
 
 }
 .line{
