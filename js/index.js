@@ -1,4 +1,5 @@
 //browser-sync start --server --files ["* .html", "* .js", "* .css"]
+let page = 0;
 
 function dateConvertion(epochz){
 	let current = new Date();
@@ -220,8 +221,9 @@ async function getVideo(){
   console.log(firstpageArr);
 
 }
-getVideo();
-
+if(page==0){
+	getVideo();
+}
 
 function playPause() { 
 	var myVideo = document.getElementById("videoContr"); 
