@@ -3,18 +3,18 @@
 ** @param {string} t1 : time in same format as t0
 ** @returns {string} summ of t0 and t1 in h:mm:ss format
 **/
-export function addTimes(t0, t1) {
+function addTimes(t0, t1) {
 	return secsToTime(timeToSecs(t0) + timeToSecs(t1));
   }
   
   // Convert time in H[:mm[:ss]] format to seconds
-  export function timeToSecs(time) {
+  function timeToSecs(time) {
 	let [h, m] = time.split(':');
 	return h*3600 + (m|0)*60;
   }
   
   // Convert seconds to time in H:mm:ss format
-  export function secsToTime(seconds) {
+  function secsToTime(seconds) {
 	let z = n => (n<10? '0' : '') + n; 
 	return (seconds / 3600 | 0) + ':' +
 		 z((seconds % 3600) / 60 | 0)
@@ -168,3 +168,4 @@ export function addTimes(t0, t1) {
   
 	   function ChangeVideo(n){
 		   clickVideo(relatedNum[n]-1);
+		}
