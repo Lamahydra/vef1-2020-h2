@@ -159,5 +159,8 @@ clickVideo(1);
 
      function restart() {
             var video = document.getElementById("videoContr");
-            video.currentTime = 0;
-        }
+			video.currentTime = 0;
+	 }
+	 function ChangeVideo(){
+		 window.open("player.html")
+	 }
