@@ -171,5 +171,5 @@ clickVideo(1);
 			video.currentTime = 0;
 	 }
 	 function ChangeVideo(){
-		 window.open("player.html")
+		 window.open("player.html","_self")
 	 }

@@ -163,7 +163,7 @@ async function getVideo(){
 }
 
 function link(){
-	window.open("player.html");
+	window.open("player.html","_self")
 
 
 }
